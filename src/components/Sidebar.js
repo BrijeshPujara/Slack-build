@@ -14,10 +14,12 @@ import SidebarOption from "./SidebarOption";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Sidebar = () => {
-  const [channels, loading, error] = useCollection(db.collection("rooms"));
+    const [channels, loading, error] = useCollection(db.collection("rooms"));
+    const [user] = useAuthState(auth)
   return (
     <SidebarContainer>
       <SidebarHeader>
